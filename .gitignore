@@ -14,3 +14,9 @@ browser-state.json
 *.log
 .private/
 local-config.json
+atrust/.cache/
+client-data.json
+config.toml
+health.json
+!atrust/examples/config.toml
+!atrust/examples/health.json

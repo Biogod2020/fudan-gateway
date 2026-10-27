@@ -1,4 +1,8 @@
-# FudanGateway · WebVPN 模式
+# FudanGateway · WebVPN 与 aTrust
+
+本仓库提供两种模式：下面介绍 **WebVPN**，可通过 UIS 登录和受控中继实现原生 SSH；
+已有的 **[aTrust 实现与构建说明](atrust/README.md)** 保存在 `atrust/`，包含原生登录窗口、
+SOCKS 后台、断线恢复和菜单栏界面。两种模式分别保存会话和运行状态。
 
 使用复旦官方 UIS 登录 WebVPN，访问校园网页，并通过自己有权使用的校内中继，让
 macOS 原生 `ssh` 连接校内服务器。SSH 私钥留在本机，主机密钥由 OpenSSH 严格校验。
@@ -85,8 +89,8 @@ flowchart LR
 `ws`/`wss` 资源路径进行 WebSocket 转发，外层始终使用 TLS。SSH 本身仍是端到端加密，
 中继没有客户端 SSH 私钥。
 
-本版本提供 WebVPN 模式；不捆绑 aTrust 客户端，不声称它的会话能绕过其他应用的认证
-要求。网页中的具体业务系统仍可能需要自己的登录和访问权限。
+WebVPN 会话不转换成 aTrust 凭证；两种模式各自完成所需认证。网页中的具体业务系统仍
+可能需要自己的登录和访问权限。
 
 ## 开发和验证
 

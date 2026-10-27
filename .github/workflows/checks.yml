@@ -11,7 +11,24 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --frozen --extra browser
       - run: uv run pytest -q
-      - run: uv run ruff check src tests scripts
-      - run: uv run ruff format --check src tests scripts
+      - run: uv run ruff check src tests scripts atrust/scripts
+      - run: uv run ruff format --check src tests scripts atrust/scripts
       - if: runner.os == 'macOS'
         run: scripts/build-macos.sh
+  atrust:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.8'
+          cache: false
+      - run: go test -race ./...
+        working-directory: atrust/supervisor
+      - run: go vet ./...
+        working-directory: atrust/supervisor
+      - if: runner.os == 'macOS'
+        run: atrust/scripts/build-macos.sh

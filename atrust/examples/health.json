@@ -1,0 +1,4 @@
+{
+  "http_target": "pai-console.cfff.fudan.edu.cn:32080",
+  "ssh_target": ""
+}
