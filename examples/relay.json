@@ -1,0 +1,9 @@
+{
+  "listen": "192.168.50.20",
+  "port": 18080,
+  "key_file": "/absolute/private/path/relay.key",
+  "watch_parent": false,
+  "targets": {
+    "campus": {"host": "127.0.0.1", "port": 2222}
+  }
+}

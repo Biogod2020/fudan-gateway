@@ -1,0 +1,17 @@
+name: checks
+on: [push, pull_request]
+jobs:
+  python:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen --extra browser
+      - run: uv run pytest -q
+      - run: uv run ruff check src tests scripts
+      - run: uv run ruff format --check src tests scripts
+      - if: runner.os == 'macOS'
+        run: scripts/build-macos.sh

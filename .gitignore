@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.DS_Store
+*.session.json
+session.json
+browser-state.json
+*.key
+*.pem
+*.log
+.private/
+local-config.json
